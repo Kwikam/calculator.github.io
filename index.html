@@ -1,46 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+<title>Simple Calculator</title>
+<style>
+  body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .calculator {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+  }
+
+  input[type="text"] {
+    width: 200px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  button {
+    width: 45px;
+    height: 40px;
+    margin: 5px;
+    font-size: 16px;
+  }
+</style>
 </head>
 <body>
-  <div class="calculator">
-    <h2>Basic calculator</h2>
-    <input type="Number" id="num1" placeholder="Enter first number">
-    <input type="Number" id="num2" placeholder="Enter second number">
-    <br>
-    <button onclick="calculate('+')">+</button>
-    <button onclick="calculate('-')">-</button>
-    <button onclick="calculate('*')">*</button>
-    <button onclick="calculate('/')">/</button>
-    <h3>Result:<span id="result">0</span></h3>
 
-  </div>
-    
-  <script>
-    function calculate(operator){
-      let num1=parseFloat(document.getElementById('num1'.value));
-      let num2=parseFloat(doument.getElementById('num2').value);
+<div class="calculator">
+  <input type="text" id="result" readonly>
+  <br>
+  <button onclick="addToResult('7')">7</button>
+  <button onclick="addToResult('8')">8</button>
+  <button onclick="addToResult('9')">9</button>
+  <button onclick="addToResult('+')">+</button><br>
+  <button onclick="addToResult('4')">4</button>
+  <button onclick="addToResult('5')">5</button>
+  <button onclick="addToResult('6')">6</button>
+  <button onclick="addToResult('-')">-</button><br>
+  <button onclick="addToResult('1')">1</button>
+  <button onclick="addToResult('2')">2</button>
+  <button onclick="addToResult('3')">3</button>
+  <button onclick="addToResult('*')">*</button><br>
+  <button onclick="addToResult('0')">0</button>
+  <button onclick="addToResult('.')">.</button>
+  <button onclick="calculate()">=</button>
+  <button onclick="addToResult('/')">/</button><br>
+  <button onclick="clearResult()">C</button>
+</div>
 
-      if (isNaN(num1)|| isNaN(num2)){
-        result="please enter valid numbers"
-      }else{
-        switch(operator){
-          case'+':result=num1+num2;break;
-          case'-':result=num1-num2;break;
-          case'*':result=num1*num2;break;
-          case'/':result=num1/num2;break;
-          default:result="Invaild operation";
-        }
-      }
-      doument.getElementById('result').textContent=result;
+<script>
+  function addToResult(value) {
+    document.getElementById('result').value += value;
+  }
+
+  function clearResult() {
+    document.getElementById('result').value = '';
+  }
+
+  function calculate() {
+    try {
+      document.getElementById('result').value = eval(document.getElementById('result').value);
+    } catch (error) {
+      document.getElementById('result').value = 'Error';
     }
-  </script>
-
-
-
+  }
+</script>
 
 </body>
 </html>
